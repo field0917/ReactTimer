@@ -13,20 +13,17 @@ var Controls = React.createClass({
   // componentWillReceiveProps: function (nextProps) {
   //   console.log('componentWillReceiveProps', nextProps.countdownStatus);
   // },
-  shouldComponentUpdate: function (nextProp) {
-    if (nextProp.countdownStatus === this.props.countdownStatus && nextProp.onStatusChange === this.props.onStatusChange)
-      return false;
-    return true;
-  },
-  componentWillUpdate: function () {
-    console.log('RERENDER');
-  },
+  // shouldComponentUpdate: function (nextProp) {
+  //   if (nextProp.countdownStatus === this.props.countdownStatus && nextProp.onStatusChange === this.props.onStatusChange)
+  //     return false;
+  //   return true;
+  // },
   render: function () {
     var {countdownStatus} = this.props;
     var renderStartStopButton = () => {
       if (countdownStatus === 'started') {
         return <button className="button secondary" onClick={this.onStatusChange('paused')}>Pause</button>
-      } else if (countdownStatus === 'paused') {
+      } else if (countdownStatus === 'paused' || countdownStatus === 'stopped') {
         return <button className="button primary" onClick={this.onStatusChange('started')}>Start</button>
       }
     };
